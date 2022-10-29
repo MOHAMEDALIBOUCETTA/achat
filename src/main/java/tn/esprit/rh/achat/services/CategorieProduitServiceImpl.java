@@ -13,6 +13,7 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 	
 	@Autowired
 	CategorieProduitRepository categorieProduitRepository;
+
 	@Override
 	public List<CategorieProduit> retrieveAllCategorieProduits() {
 		
@@ -27,6 +28,7 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
 	@Override
 	public void deleteCategorieProduit(Long id) {
+		categorieProduitRepository.findById(id).orElseThrow(()-> new RuntimeException());
 		categorieProduitRepository.deleteById(id);
 		
 	}
@@ -39,7 +41,7 @@ public class CategorieProduitServiceImpl implements ICategorieProduitService {
 
 	@Override
 	public CategorieProduit retrieveCategorieProduit(Long id) {
-		CategorieProduit categorieProduit = categorieProduitRepository.findById(id).orElse(null);
+		CategorieProduit categorieProduit = categorieProduitRepository.findById(id).orElseThrow(()-> new RuntimeException());
 		return categorieProduit;
 	}
 
